@@ -2,21 +2,20 @@ from typing import Optional
 
 
 def binary_search(sorted_list: list, searched_elem: int) -> Optional[int]:
-    low_elem_idx = 0
-    high_elem_idx = len(sorted_list) - 1
+    left_idx = 0
+    right_idx = len(sorted_list) - 1
 
-    while high_elem_idx >= low_elem_idx:
-        middle_elem_idx = (low_elem_idx + high_elem_idx) // 2
-
-        middle_elem = sorted_list[middle_elem_idx]
-        if searched_elem == middle_elem:
-            return middle_elem_idx
-        elif searched_elem > middle_elem:
-            low_elem_idx = middle_elem_idx + 1
-        elif searched_elem < middle_elem:
-            high_elem_idx = middle_elem_idx - 1
-
-    return None
+    while left_idx <= right_idx:
+        middle_idx = (left_idx + right_idx) // 2
+        middle_elem = sorted_list[middle_idx]
+        if middle_elem == searched_elem:
+            return middle_idx
+        elif middle_elem < searched_elem:
+            left_idx = middle_idx + 1
+        else:
+            right_idx = middle_idx - 1
+        
+    return None 
 
 
 res = binary_search([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 6)
